@@ -1,0 +1,20 @@
+
+body {
+	padding: 10px;
+}
+a {
+	color: blue;
+}
+
+.form-group {
+	padding: 5px;
+}
+#nearby_bus_stops_map {
+	width: 400px; 
+	height: 400px
+}
+.panel-body {
+	overflow-y: scroll; 
+	height:500px;
+
+}
