@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-	getLocation();
-
 	$(document).on("click", "#stop_get_busses", getUpcomingBusses);
 });
 
@@ -53,21 +51,4 @@ function getStopSchedule() {
 		
 	});
 	
-}
-
-
-function getLocation() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(setPositionValues);
-		
-	} else {
-		console.log("Geolocation is not supported by this browser.");
-	}
-
-
-}
-
-function setPositionValues(position) {
-	window.latitude = position.coords.latitude;
-	window.longitude = position.coords.longitude;
 }
