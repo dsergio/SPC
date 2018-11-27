@@ -1,13 +1,12 @@
-
 $(document).ready(function() {
 
 	getLocation();
 
 	$(document).on("click", "#stop_get_busses", getUpcomingBusses);
 
-	// $(document).on("click", "#nearby_bus_stops_refresh", function() {
-	// 	nearbyBusStopsMap();
-	// });
+	$(document).on("click", "#nearby_bus_stops_refresh", function() {
+		nearbyBusStopsMap();
+	});
 
 });
 
@@ -98,31 +97,31 @@ function setPositionValues(position) {
 	window.latitude = position.coords.latitude;
 	window.longitude = position.coords.longitude;
 
-	//nearbyBusStopsMap();
+	nearbyBusStopsMap();
 }
 
-function setStopsSelect() {
+function nearbyBusStopsMap() {
 
 	console.log("Latitude: " + latitude + " Longitude: " + longitude); 
-	// initializeMap(latitude, longitude);	
+	initializeMap(latitude, longitude);	
 
-	// var radius = $("#select_radius_chooser option:selected").attr("data-id");
+	var radius = $("#select_radius_chooser option:selected").attr("data-id");
 
 	$.get("https://transit.land/api/v1/stops?lon=" + longitude + "&lat=" + latitude + "&r=" + radius + "&rand=" + (new Date()).getTime(), function(data) {
 		
-		// console.log(data);
+		console.log(data);
 
-		// var str = "<h3>Stops in your area</h3>";
-		// var stops_str = "";
-		// str += "<p>latitude: " + latitude + ", longitude: " + longitude + ", within 5km. </p>";
-		// str += "<ul class='list-group'>";
-		// for (var i in data['stops']) {
-		// 	str += "<li class='list-group-item'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</li>";
-		// 	stops_str += "<option data-id = '" + data['stops'][i]['onestop_id'] +"'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</option>";
-		// }
-		// str += "</ul>";
+		var str = "<h3>Stops in your area</h3>";
+		var stops_str = "";
+		str += "<p>latitude: " + latitude + ", longitude: " + longitude + ", within 5km. </p>";
+		str += "<ul class='list-group'>";
+		for (var i in data['stops']) {
+			str += "<li class='list-group-item'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</li>";
+			stops_str += "<option data-id = '" + data['stops'][i]['onestop_id'] +"'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</option>";
+		}
+		str += "</ul>"
 
-		// $("#nearby_bus_stops_list").html(str);
+		$("#nearby_bus_stops_list").html(str);
 		$("#select_stop").html(stops_str)
 	});
 }
