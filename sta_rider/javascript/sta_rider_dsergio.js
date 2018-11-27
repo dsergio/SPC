@@ -3,11 +3,6 @@ $(document).ready(function() {
 	getLocation();
 
 	$(document).on("click", "#stop_get_busses", getUpcomingBusses);
-
-	$(document).on("click", "#nearby_bus_stops_refresh", function() {
-		nearbyBusStopsMap();
-	});
-
 });
 
 function getUpcomingBusses() {
@@ -60,27 +55,6 @@ function getStopSchedule() {
 	
 }
 
-function initializeMap(lat, lon) {
-
-	var platform = new H.service.Platform({
-		'app_id': 'Yeq4hP2BMZTubVgdhqxl',
-		'app_code': 'i4q4Cfeb1GzBxgZYQmyRgw',
-		useHTTPS: true
-	});
-
-	// Obtain the default map types from the platform object:
-	var defaultLayers = platform.createDefaultLayers();
-
-	// Instantiate (and display) a map object:
-	var map = new H.Map(
-		document.getElementById('nearby_bus_stops_map'),
-		defaultLayers.normal.map,
-		{
-		zoom: 10,
-		center: { lat: lat, lng: lon }
-	});
-}
-
 
 function getLocation() {
 	if (navigator.geolocation) {
@@ -96,32 +70,4 @@ function getLocation() {
 function setPositionValues(position) {
 	window.latitude = position.coords.latitude;
 	window.longitude = position.coords.longitude;
-
-	nearbyBusStopsMap();
-}
-
-function nearbyBusStopsMap() {
-
-	console.log("Latitude: " + latitude + " Longitude: " + longitude); 
-	initializeMap(latitude, longitude);	
-
-	var radius = $("#select_radius_chooser option:selected").attr("data-id");
-
-	$.get("https://transit.land/api/v1/stops?lon=" + longitude + "&lat=" + latitude + "&r=" + radius + "&rand=" + (new Date()).getTime(), function(data) {
-		
-		console.log(data);
-
-		var str = "<h3>Stops in your area</h3>";
-		var stops_str = "";
-		str += "<p>latitude: " + latitude + ", longitude: " + longitude + ", within 5km. </p>";
-		str += "<ul class='list-group'>";
-		for (var i in data['stops']) {
-			str += "<li class='list-group-item'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</li>";
-			stops_str += "<option data-id = '" + data['stops'][i]['onestop_id'] +"'>" + data['stops'][i]['name'] + " - " + data['stops'][i]['tags']['stop_desc'] + "</option>";
-		}
-		str += "</ul>"
-
-		$("#nearby_bus_stops_list").html(str);
-		$("#select_stop").html(stops_str)
-	});
 }
