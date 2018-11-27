@@ -10,11 +10,10 @@ a {
 	padding: 5px;
 }
 #nearby_bus_stops_map {
-	width: 400px; 
-	height: 400px
+	width: 100%; 
+	height: 100%;
 }
 .panel-body {
 	overflow-y: scroll; 
 	height:500px;
-
 }

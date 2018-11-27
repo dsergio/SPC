@@ -27,6 +27,12 @@
 	type="text/javascript" charset="utf-8"></script>
 	<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
 	type="text/javascript" charset="utf-8"></script>
+	<script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+     type="text/javascript" charset="utf-8"></script>
+	<script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" 
+    type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" 
+    href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
 
 
 	
@@ -87,22 +93,13 @@
 
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Map - Nearby Bus Stops</div>
-					<div class="panel-body">
-
-						<div class="form-group" id = "radius_chooser">
-							<label for="select_radius_chooser">Stop:</label>
-							<select class="form-control" id="select_radius_chooser">
-								<option data-id = "5000">5 km</option>
-								<option data-id = "10000">10 km</option>
-								<option data-id = "15000">15 km</option>
-							</select>
-						</div>
+					<div class="panel-heading">
+						Map - Nearby Bus Stops 
 						<button type="button" id = "nearby_bus_stops_refresh" class="btn btn-success">Refresh</button>
-
+					</div>
+					<div class="panel-body">
 						<div id = "nearby_bus_stops_map"></div>
 						<div id = "nearby_bus_stops_list"></div>
-						
 					</div>
 				</div>
 			</div>

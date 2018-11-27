@@ -56,9 +56,7 @@ function nearbyBusStopsMap() {
 
 	console.log("Latitude: " + latitude + " Longitude: " + longitude); 
 
-	var radius = $("#select_radius_chooser option:selected").attr("data-id");
-
-	$.get("https://transit.land/api/v1/stops?lon=" + longitude + "&lat=" + latitude + "&r=" + radius + "&rand=" + (new Date()).getTime(), function(data) {
+	$.get("https://transit.land/api/v1/stops?lon=" + longitude + "&lat=" + latitude + "&r=5000", function(data) {
 		
 		console.log(data);
 
