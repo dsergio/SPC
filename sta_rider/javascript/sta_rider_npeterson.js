@@ -42,6 +42,10 @@ function renderMap(pos) {
     stopMap.addObject(mapGroup);
 
     mapGroup.addEventListener('tap', (evt) => {
+        for(let bubble of stopMapUI.getBubbles()) {
+            bubble.close();
+        }
+
         let bubble = new H.ui.InfoBubble(evt.target.getPosition(), {
             content: evt.target.getData()
         });
